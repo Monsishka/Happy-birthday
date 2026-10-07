@@ -350,3 +350,18 @@ footer {
         margin-bottom: 60px;
     }
   }
+.secret-photo {
+    display: block;
+    max-width: 300px;
+    margin: 40px auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.secret-photo.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
