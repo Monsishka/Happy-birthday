@@ -365,3 +365,87 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
+/* ============ КНОПКА PLAY В HERO ============ */
+.play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent-soft);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 40px;
+    transition: all 0.4s ease;
+    animation: fadeUp 1.2s ease 0.5s both;
+}
+
+.play-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 30px rgba(255, 107, 44, 0.4);
+}
+
+.play-icon {
+    font-size: 0.8rem;
+}
+
+.play-btn.playing .play-icon {
+    animation: pulse 1.5s ease infinite;
+}
+
+.play-btn.playing .play-text::after {
+    content: '';
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ============ ПЛАВАЮЩАЯ КНОПКА МУЗЫКИ ============ */
+.music-toggle {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+
+.music-toggle.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.music-toggle:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(255, 107, 44, 0.3);
+}
+
+.music-toggle.playing .music-icon {
+    animation: musicBounce 1s ease infinite;
+}
+
+@keyframes musicBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
