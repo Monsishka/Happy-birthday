@@ -29,3 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+// Пасхалка-фото в самом низу
+const secretPhoto = document.querySelector('.secret-photo');
+if (secretPhoto) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                secretPhoto.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    observer.observe(secretPhoto);
+}
