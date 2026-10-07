@@ -42,3 +42,56 @@ if (secretPhoto) {
     }, { threshold: 0.5 });
     observer.observe(secretPhoto);
 }
+// ============ МУЗЫКА ============
+const bgMusic = document.getElementById('bgMusic');
+const playBtn = document.getElementById('playBtn');
+const musicToggle = document.getElementById('musicToggle');
+let isPlaying = false;
+
+// Кнопка в hero
+if (playBtn && bgMusic) {
+    playBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+            bgMusic.volume = 0.3;
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                playBtn.classList.add('playing');
+                playBtn.querySelector('.play-text').textContent = 'играет...';
+                musicToggle.classList.add('show', 'playing');
+            }).catch(err => {
+                console.log('Не удалось воспроизвести:', err);
+            });
+        } else {
+            bgMusic.pause();
+            isPlaying = false;
+            playBtn.classList.remove('playing');
+            playBtn.querySelector('.play-text').textContent = 'нажми, чтобы начать';
+            musicToggle.classList.remove('playing');
+        }
+    });
+}
+
+// Плавающая кнопка
+if (musicToggle && bgMusic) {
+    musicToggle.addEventListener('click', () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            isPlaying = false;
+            musicToggle.classList.remove('playing');
+            if (playBtn) {
+                playBtn.classList.remove('playing');
+                playBtn.querySelector('.play-text').textContent = 'нажми, чтобы начать';
+            }
+        } else {
+            bgMusic.volume = 0.3;
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicToggle.classList.add('playing');
+                if (playBtn) {
+                    playBtn.classList.add('playing');
+                    playBtn.querySelector('.play-text').textContent = 'играет...';
+                }
+            });
+        }
+    });
+}
